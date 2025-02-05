@@ -97,6 +97,33 @@
                                             </tr>  
 
                                         @endif
+                                        @if($recents->groupe_user == "100")
+                                        
+                                            <tr>
+                                                <td>{{$recents->nom}}</td>
+                                                <td>{{$recents->nom_folder}}</td>
+                                                <td>
+                                                    @if($recents->mis_en_ligne != NULL)
+                                                        @php echo date('d/m/Y',strtotime($recents->mis_en_ligne)) @endphp
+                                                    @else
+
+                                                    @endif
+                                                
+                                                </td>
+                                                <td>@php echo date('d/m/Y',strtotime($recents->date_creation)) @endphp</td>
+                                                <td>
+                                                    <form action="display" method="post" enctype="multipart/form-data" target="blank">
+                                                        @csrf
+                                                    
+                                                        <input type="text" value={{$recents->id}} style="display:none;" name="id">
+                                                        <input type="text" class="form-control" name="path" value="{{$recents->path}}" style="display:none;">
+                                                    
+                                                        <button type="submit" class="btn btn-warning"><i class="fa fa-e"></i>Afficher/Télécharger</button>
+                                                    </form>
+                                                </td>
+                                            </tr>  
+
+                                        @endif
                                     @endif
                                 @endforeach
                                

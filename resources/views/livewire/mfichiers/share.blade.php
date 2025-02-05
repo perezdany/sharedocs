@@ -19,7 +19,8 @@
                                     $get =  $groupecontroller->GetAll();
                                     //dd($get);
                                 @endphp
-                                <option value="NULL">Tout le monde</option>
+                                <option value="null">Tout le monde</option>
+                              
                                 @foreach($get as $get)
                                     <option value={{$get->id}}>{{$get->titre}}</option>
 

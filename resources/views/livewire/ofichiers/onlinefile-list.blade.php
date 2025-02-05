@@ -90,36 +90,74 @@
                                         </tr>  
                                     @else
                                         @if($fichier->groupe_user == NULL)
+                                       
                                             <tr>
-                                            <!--<img src="dist/img/3979284.png" alt="icone fichier" class="img img-responsive elevation-2">-->
-                                            <td><span class="fa fa-file"></span>  {{$fichier->nom}}</td>
-                                            <td><span class="fa fa-book"></span> {{$fichier->nom_folder}}</td>
-                                            <td>
-                                                @php 
-                                                    if($fichier->mis_en_ligne == NULL)
-                                                    {
+                                                <!--<img src="dist/img/3979284.png" alt="icone fichier" class="img img-responsive elevation-2">-->
+                                                <td><span class="fa fa-file"></span>  {{$fichier->nom}}</td>
+                                                <td><span class="fa fa-book"></span> {{$fichier->nom_folder}}</td>
+                                                <td>
+                                                    @php 
+                                                        if($fichier->mis_en_ligne == NULL)
+                                                        {
 
-                                                    }
-                                                    else
-                                                    {
-                                                        echo date('d/m/Y',strtotime($fichier->mis_en_ligne));
-                                                    }
+                                                        }
+                                                        else
+                                                        {
+                                                            echo date('d/m/Y',strtotime($fichier->mis_en_ligne));
+                                                        }
+                                                        
+                                                    @endphp
+                                                </td>
+                                                <td>@php echo date('d/m/Y',strtotime($fichier->date_creation)) @endphp</td>
+                                                <td>
+                                                    <form action="display" method="post" enctype="multipart/form-data" target="blank">
+                                                        @csrf
                                                     
-                                                @endphp
-                                            </td>
-                                            <td>@php echo date('d/m/Y',strtotime($fichier->date_creation)) @endphp</td>
-                                            <td>
-                                                <form action="display" method="post" enctype="multipart/form-data" target="blank">
-                                                    @csrf
-                                                
-                                                    <input type="text" value={{$fichier->id}} style="display:none;" name="id_file">
-                                                    <input type="text" class="form-control" name="path" value="{{$fichier->path}}" style="display:none;">
-                                                
-                                                    <button type="submit" class="btn btn-warning"><i class="fa fa-e"></i>Afficher/Télécharger</button>
-                                                </form>
-                                            </td>
-                                        
-                                        </tr>  
+                                                        <input type="text" value={{$fichier->id}} style="display:none;" name="id_file">
+                                                        <input type="text" class="form-control" name="path" value="{{$fichier->path}}" style="display:none;">
+                                                    
+                                                        <button type="submit" class="btn btn-warning"><i class="fa fa-e"></i>Afficher/Télécharger</button>
+                                                    </form>
+                                                </td>
+                                            
+                                            </tr>  
+                                        @else
+
+                                        @endif
+                                        @if($fichier->groupe_user == "100")
+                                            
+                                            <tr>
+                                                <!--<img src="dist/img/3979284.png" alt="icone fichier" class="img img-responsive elevation-2">-->
+                                                <td><span class="fa fa-file"></span>  {{$fichier->nom}}</td>
+                                                <td><span class="fa fa-book"></span> {{$fichier->nom_folder}}</td>
+                                                <td>
+                                                    @php 
+                                                        if($fichier->mis_en_ligne == NULL)
+                                                        {
+
+                                                        }
+                                                        else
+                                                        {
+                                                            echo date('d/m/Y',strtotime($fichier->mis_en_ligne));
+                                                        }
+                                                        
+                                                    @endphp
+                                                </td>
+                                                <td>@php echo date('d/m/Y',strtotime($fichier->date_creation)) @endphp</td>
+                                                <td>
+                                                    <form action="display" method="post" enctype="multipart/form-data" target="blank">
+                                                        @csrf
+                                                    
+                                                        <input type="text" value={{$fichier->id}} style="display:none;" name="id_file">
+                                                        <input type="text" class="form-control" name="path" value="{{$fichier->path}}" style="display:none;">
+                                                    
+                                                        <button type="submit" class="btn btn-warning"><i class="fa fa-e"></i>Afficher/Télécharger</button>
+                                                    </form>
+                                                </td>
+                                            
+                                            </tr>  
+                                        @else
+                                            
                                         @endif
                                     @endif
                                @empty

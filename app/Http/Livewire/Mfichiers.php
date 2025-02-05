@@ -107,7 +107,7 @@ class Mfichiers extends Component
 
     public function ShareFile()
     {
-        
+        //dd($this->groupe);
         //modifier le champ online
         $affected = DB::table('fichiers')
         ->where('id',  $this->ShareFichier['id'])
@@ -117,8 +117,9 @@ class Mfichiers extends Component
             'groupe_user' => $this->groupe,
             ]);
 
-        if($this->groupe == "")
+        if($this->groupe == null)
         {
+           
             //ON VA ENVOYER LE MAIL A TOUS LE MONDE
             $users = User::all();
             $url = "127.0.0.1:8000";
@@ -132,6 +133,24 @@ class Mfichiers extends Component
         else
         {
            // dd('idi');
+           //SI IL VEUT PARTAGER ET AUX MEMBRES ET AUX MEMBRES D'HONNEUR
+           if($this->groupe == "100")
+           {
+                $users_get = DB::table('users')->where('groupes_id', 2)->get();
+                $url = "127.0.0.1:8000";
+                $data = ['url' => $url];
+                //dd($this->groupe);
+                foreach($users_get as $user_get)
+                {
+                    Mail::to($user_get->email)->send(new NotifNewFile($data));
+                }
+
+                $users_get = DB::table('users')->where('groupes_id', 4)->get();
+                foreach($users_get as $user_get)
+                {
+                    Mail::to($user_get->email)->send(new NotifNewFile($data));
+                }
+            }
             $users_get = User::where('groupes_id', $this->groupe)->get();
             
             $url = "127.0.0.1:8000";
@@ -358,6 +377,13 @@ class Mfichiers extends Component
 
         //dd($try_delete);
         Fichier::destroy($id);
+        $get_path = Fichier::where('id', $id)->get();
+        //SUPPRESSION DE L'ANCIEN FICHIER
+        //dd($get_path->path);
+        foreach($get_path as $get_path)
+        {
+            Storage::delete($get_path->path);
+        }
         $this->dispatchBrowserEvent('showSuccessMessage', ["message" => "Elément supprimé avec succès !"]);
        
     }
@@ -404,7 +430,6 @@ class Mfichiers extends Component
             'online' => $this->editFichier['online'], 
            
         ]);
-        
         if($this->editFichier['online'] == "0")
         {
             //effacer la date de mise en ligne
@@ -414,10 +439,6 @@ class Mfichiers extends Component
                 'mis_en_ligne'=>  NULL,
                  
             ]);
-
-        }
-        else
-        {
 
         }
 
