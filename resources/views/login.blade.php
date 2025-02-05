@@ -3,7 +3,7 @@
 @section('content')
   <div class="login-box">
     <div class="login-logo">
-      <a href=""><b>Conn</b>exion</a>
+      <a href=""><b>GRSCI-</b>Partage de fichiers</a>
     </div>
     <!-- /.login-logo -->
     <div class="card">

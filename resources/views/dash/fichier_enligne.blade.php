@@ -19,7 +19,7 @@
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>{{$dossier->nom_folder}}</h3>
+                                 <h4><b>{{$dossier->nom_folder}}</b></h4>
                             </div>
                             <p></p>
                             <p></p>
