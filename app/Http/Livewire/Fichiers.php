@@ -84,7 +84,7 @@ class Fichiers extends Component
            
         }
 
-        return view('livewire.fichiers.index', ['fichiers' => $fichierQuery->orderBy($this->orderField, $this->orderDirection)->paginate(3) ])
+        return view('livewire.fichiers.index', ['fichiers' => $fichierQuery->orderBy($this->orderField, $this->orderDirection)->paginate(10) ])
       ;
     }
 }

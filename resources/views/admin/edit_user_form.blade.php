@@ -39,15 +39,15 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Nom & Prénom(s)</label>
-                                        <input type="email" class="form-control " name="nom_prenoms" value="{{$user->nom_prenoms}}" onkeyup='this.value=this.value.toUpperCase()'>
+                                        <input type="text" class="form-control " name="nom_prenoms" value="{{$user->nom_prenoms}}" onkeyup='this.value=this.value.toUpperCase()'>
                                     </div>
                                      <div class="form-group">
                                         <label>Fonction</label>
-                                        <input type="email" class="form-control " name="fonction" value="{{$user->fonction}}" onkeyup='this.value=this.value.toUpperCase()'>
+                                        <input type="tex" class="form-control " name="fonction" value="{{$user->fonction}}" onkeyup='this.value=this.value.toUpperCase()'>
                                     </div>
                                      <div class="form-group">
                                         <label>Structure</label>
-                                        <input type="email" class="form-control " name="entreprise" value="{{$user->entreprise}}" onkeyup='this.value=this.value.toUpperCase()'>
+                                        <input type="text" class="form-control " name="entreprise" value="{{$user->entreprise}}" onkeyup='this.value=this.value.toUpperCase()'>
                                     </div>
                                     <div class="form-group">
                                         <label>Email</label>

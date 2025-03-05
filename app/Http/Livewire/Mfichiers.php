@@ -477,6 +477,6 @@ class Mfichiers extends Component
            
         }
 
-        return view('livewire.mfichiers.index', ['fichiers' => $fichierQuery->orderBy($this->orderField, $this->orderDirection)->paginate(3) ]);
+        return view('livewire.mfichiers.index', ['fichiers' => $fichierQuery->orderBy($this->orderField, $this->orderDirection)->paginate(20) ]);
     }
 }

@@ -104,17 +104,23 @@
                                         </td>
                                         <td>
                                             @if($user->active == true)
-                                                <form action="disable_user" method="post">
+                                                <!--<form action="disable_user" method="post">
                                                     @csrf
                                                     <input type="text" value={{$user->id}} style="display:none;" name="id_user">
                                                     <button type="submit" class="btn btn-danger"><i class="fa fa-times"></i></button>
-                                                </form>
+                                                </form>-->
+                                                <button type="submit" class="btn btn-danger" 
+                                                    wire:click="confirmDisable(' {{ $user->email }} '
+                                                    , {{ $user->id }} )"><i class="fa fa-times"></i></button>
                                             @else
-                                                <form action="enable_user" method="post">
+                                                <!--<form action="enable_user" method="post">
                                                     @csrf
                                                     <input type="text" value={{$user->id}} style="display:none;" name="id_user">
                                                     <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i></button>
-                                                </form>
+                                                </form>-->
+                                                <button type="submit" class="btn btn-primary" 
+                                                    wire:click="confirmEnable(' {{ $user->email }} '
+                                                    , {{ $user->id }} )"><i class="fa fa-check"></i></button>
                                             @endif
                                                 
                                                 

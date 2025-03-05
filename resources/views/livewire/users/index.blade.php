@@ -95,6 +95,93 @@
                 })
             })
 
+            //ACTIVER DESACTIVER UN UTILISATEUR
+            window.addEventListener("showConfirmDisable",  event=>{
+            Swal.fire({
+                title: event.detail.message.title,
+                text: event.detail.message.text,
+                icon: event.detail.message.type,
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Continuer!",
+                cancelButtonText: "Annuler!",
+                }).then((result) => {
+                if (result.isConfirmed) {
+                @this.disableUser(event.detail.message.data.id_user)
+                }
+                });
+
+
+                //Message de succès
+                window.addEventListener("showSuccessMessage",  event=>{
+                Swal.fire({
+                    position: 'top-end',
+                    icon: "success",
+                    toast: true,
+                    title: event.detail.message || "Opération effectuée avec succès!",
+                    showCancelButton: false,
+                    timer: 3000,
+                    })
+                })
+
+                //Message d'erreur
+                window.addEventListener("showErrorMessage",  event=>{
+            Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    background: "#ff3362" ,
+                    color: "#fff",
+                    position: "top",
+                    text: event.detail.message,
+                
+                    });
+                })
+            })
+
+            window.addEventListener("showConfirmEnable",  event=>{
+            Swal.fire({
+                title: event.detail.message.title,
+                text: event.detail.message.text,
+                icon: event.detail.message.type,
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Continuer!",
+                cancelButtonText: "Annuler!",
+                }).then((result) => {
+                if (result.isConfirmed) {
+                @this.enableUser(event.detail.message.data.id_user)
+                }
+                });
+
+
+                //Message de succès
+                window.addEventListener("showSuccessMessage",  event=>{
+                Swal.fire({
+                    position: 'top-end',
+                    icon: "success",
+                    toast: true,
+                    title: event.detail.message || "Opération effectuée avec succès!",
+                    showCancelButton: false,
+                    timer: 3000,
+                    })
+                })
+
+                //Message d'erreur
+                window.addEventListener("showErrorMessage",  event=>{
+            Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    background: "#ff3362" ,
+                    color: "#fff",
+                    position: "top",
+                    text: event.detail.message,
+                
+                    });
+                })
+            })
+
 
             window.addEventListener("showDetail",  event=>{
                 $("#details").modal(

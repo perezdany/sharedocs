@@ -131,6 +131,33 @@ class Users extends Component
         ]);
     }
 
+    public function confirmDisable($nom_entreprise, $id)
+    {
+        $this->dispatchBrowserEvent('showConfirmDisable', 
+        
+        ["message" => [
+            "text" => "Vous êtes sur le point de désactiver l'email $nom_entreprise de la base de données.",
+            "title" => "Êtes vous sûre de continuer?",
+            "type" => "warning",
+            "data" => ["id_user" => $id]
+            ]
+        
+        ]);
+    }
+    public function confirmEnable($nom_entreprise, $id)
+    {
+        $this->dispatchBrowserEvent('showConfirmEnable', 
+        
+        ["message" => [
+            "text" => "Vous êtes sur le point d'activer l'email $nom_entreprise de la base de données.",
+            "title" => "Êtes vous sûre de continuer?",
+            "type" => "warning",
+            "data" => ["id_user" => $id]
+            ]
+        
+        ]);
+    }
+
     public function deleteUser($id)
     {
         //PASSER A LA SUPPRESSION
@@ -149,6 +176,32 @@ class Users extends Component
             $this->dispatchBrowserEvent('showErrorMessage', ["message" => "Vous ne pouvez pas suppriemer cette entreprise car elle a des contrats!"]);
            
         }
+       
+    }
+
+    public function disableUser($id)
+    {
+        //PASSER A LA SUPPRESSION
+
+        $affected = DB::table('users')
+        ->where('id', $id)
+        ->update(['active' =>  0, ]);
+
+        $this->dispatchBrowserEvent('showSuccessMessage', ["message" => "Utilisateur désactivé avec succès !"]);
+      
+       
+    }
+
+    public function enableUser($id)
+    {
+        //ACTIVER LE USER
+
+        $affected = DB::table('users')
+        ->where('id', $id)
+        ->update(['active' =>  1, ]);
+
+        $this->dispatchBrowserEvent('showSuccessMessage', ["message" => "Utilisateur activé avec succès !"]);
+             
        
     }
     
@@ -178,6 +231,6 @@ class Users extends Component
             ->orwhere("titre", "LIKE", "%".$this->table_search."%");
         }
 
-        return view('livewire.users.index', ['users' => $userQuery->orderBy($this->orderField, $this->orderDirection)->paginate(3) ]);
+        return view('livewire.users.index', ['users' => $userQuery->orderBy($this->orderField, $this->orderDirection)->paginate(20) ]);
     }
 }
